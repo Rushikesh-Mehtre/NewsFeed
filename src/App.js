@@ -1,25 +1,116 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Navbar from "./Components/Navbar";
+import News from "./Components/News";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import LoadingBar from "react-top-loading-bar";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends Component {
+  apiKey = "673006b608b44b16bd24c56815df60e6";
+  state = {
+    progress: 10,
+  };
+
+  setProgress = (progress) => {
+    this.setState({
+      progress: progress,
+    });
+  };
+  render() {
+    return (
+      <div>
+        <Router>
+          <Navbar />
+          <LoadingBar
+            height={3}
+            color="#f11946"
+            progress={this.state.progress}
+          />
+          <Switch>
+            <Route exact path="/">
+              <News
+                apiKey={this.apiKey}
+                setProgress={this.setProgress}
+                key="general"
+                pageSize={6}
+                country="in"
+                category="general"
+              />
+            </Route>
+            <Route exact path="/sports">
+              <News
+                apiKey={this.apiKey}
+                setProgress={this.setProgress}
+                key="sports"
+                pageSize={6}
+                country="in"
+                category="sports"
+              />
+            </Route>
+            <Route exact path="/health">
+              <News
+                apiKey={this.apiKey}
+                setProgress={this.setProgress}
+                key="health"
+                pageSize={6}
+                country="in"
+                category="health"
+              />
+            </Route>
+            <Route exact path="/science">
+              <News
+                apiKey={this.apiKey}
+                setProgress={this.setProgress}
+                key="science"
+                pageSize={6}
+                country="in"
+                category="science"
+              />
+            </Route>
+            <Route exact path="/technology">
+              <News
+                apiKey={this.apiKey}
+                setProgress={this.setProgress}
+                key="technology"
+                pageSize={6}
+                country="in"
+                category="technology"
+              />
+            </Route>
+            <Route exact path="/">
+              <News
+                apiKey={this.apiKey}
+                setProgress={this.setProgress}
+                key="general"
+                pageSize={6}
+                country="in"
+                category="general"
+              />
+            </Route>
+            <Route exact path="/business">
+              <News
+                apiKey={this.apiKey}
+                setProgress={this.setProgress}
+                key="business"
+                pageSize={6}
+                country="in"
+                category="business"
+              />
+            </Route>
+            <Route exact path="/entertainment">
+              <News
+                apiKey={this.apiKey}
+                setProgress={this.setProgress}
+                key="entertainment"
+                pageSize={6}
+                country="in"
+                category="entertainment"
+              />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;
